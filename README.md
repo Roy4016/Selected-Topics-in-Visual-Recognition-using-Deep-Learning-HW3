@@ -1,4 +1,4 @@
-# Cell Segmentation Project
+# Instance Segmentation Project
 
 This project implements a Mask R-CNN model using PyTorch for cell instance segmentation in biomedical images. It includes data loading, training, validation, and inference steps, providing a complete workflow for cell detection and segmentation.
 
