@@ -95,9 +95,8 @@ def collate_fn(batch):
     batch = [b for b in batch if b is not None]
     return tuple(zip(*batch))
 
-
 # --- Training Function ---
-def train_one_epoch(model, optimizer, data_loader, device, scheduler=None):
+def train_one_epoch(model, optimizer, data_loader, device):
     model.train()
     total_loss = 0.0
     num_batches = 0
@@ -117,9 +116,6 @@ def train_one_epoch(model, optimizer, data_loader, device, scheduler=None):
             torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=10.0)
             optimizer.step()
 
-            if scheduler:
-                scheduler.step()
-
             total_loss += losses.item()
             num_batches += 1
 
@@ -135,7 +131,6 @@ def train_one_epoch(model, optimizer, data_loader, device, scheduler=None):
         torch.cuda.empty_cache()
 
     return total_loss / max(num_batches, 1)
-
 
 def evaluate(model, data_loader, device):
     model.train()
@@ -241,20 +236,11 @@ def main():
 
     params = [p for p in model.parameters() if p.requires_grad]
     optimizer = torch.optim.SGD(params, lr=0.005, momentum=0.9, weight_decay=0.0005)
-    scheduler = torch.optim.lr_scheduler.OneCycleLR(
-            optimizer,
-            max_lr=0.05,
-            steps_per_epoch=len(train_loader),
-            epochs=25,
-            pct_start=0.3,
-            anneal_strategy='cos',
-            final_div_factor=10
-        )
 
     best_val_loss = float('inf')
     for epoch in range(25):
         print(f"\n--- Epoch {epoch + 1} ---")
-        train_loss = train_one_epoch(model, optimizer, train_loader, device, scheduler)
+        train_loss = train_one_epoch(model, optimizer, train_loader, device)
         val_loss = evaluate(model, val_loader, device)
 
         print(f"[Train] Loss: {train_loss:.4f} | [Validation] Loss: {val_loss:.4f}")
