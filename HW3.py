@@ -132,6 +132,7 @@ def train_one_epoch(model, optimizer, data_loader, device):
 
     return total_loss / max(num_batches, 1)
 
+# --- Valid Function ---
 def evaluate(model, data_loader, device):
     model.train()
     total_loss = 0.0
