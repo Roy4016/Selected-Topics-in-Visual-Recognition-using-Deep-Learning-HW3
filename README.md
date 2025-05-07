@@ -41,7 +41,7 @@ Run the main training script:
 python HW3.py
 ```
 
-Make sure to set the correct paths for your training, testing, and image ID map in the `main()` function.
+Make sure to set the correct paths in the `main()` function.
 
 ## Results
 
