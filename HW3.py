@@ -201,10 +201,10 @@ def inference(model, test_dir, output_json, image_id_map):
 
 # --- Main ---
 def main():
-    train_root = '/kaggle/input/dataset/train'
-    test_root = '/kaggle/input/dataset/test_release'
-    image_id_map_path = '/kaggle/input/dataset/test_image_name_to_ids.json'
-    model_path = '/kaggle/working/maskrcnn_model_best.pth'
+    train_root = 'dataset/train'
+    test_root = 'dataset/test_release'
+    image_id_map_path = 'dataset/test_image_name_to_ids.json'
+    model_path = 'maskrcnn_model_best.pth'
 
     with open(image_id_map_path, 'r') as f:
         image_id_map = json.load(f)
