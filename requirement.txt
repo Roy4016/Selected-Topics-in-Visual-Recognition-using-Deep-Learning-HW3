@@ -1,0 +1,8 @@
+numpy
+scikit-image
+torch
+torchvision
+tqdm
+Pillow
+pycocotools
+gc
