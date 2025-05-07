@@ -18,12 +18,12 @@ Organize your dataset as follows:
 ```
 dataset/
 ├── train/
-│   └── image1
-|       ├──image.tif
-│       ├── class1.tif
-│       ├── class2.tif
-│       ├── class3.tif
-│       └── class4.tif
+│   ├── image1
+│   │   ├──image.tif
+│   │   ├── class1.tif
+│   │   ├── class2.tif
+│   │   ├── class3.tif
+│   │   └── class4.tif
 │   ...
 ├── test_release/
 │   ├── image1.tif
